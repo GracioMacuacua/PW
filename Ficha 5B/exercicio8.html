@@ -1,0 +1,33 @@
+!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <input type="number">
+        <h5></h5>
+    </div>
+    <script>
+        const input = document.querySelector("input");
+        const output = document.querySelector("h5");
+
+        input.addEventListener("keyup", () => {
+            if (input.value % 2 == 0) {
+                output.innerHTML = "par";
+            } else {
+                output.innerHTML = "impar";
+            }
+        });
+
+    </script>
+</body>
+
+</html>

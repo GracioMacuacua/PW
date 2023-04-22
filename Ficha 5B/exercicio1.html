@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1</title>
+
+    <style>
+        #caixas > div {
+            margin-top: 20px;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+   <form>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome"><br><br>
+
+    <label for="cor">Cor:</label>
+    <input type="color" id="cor" name="cor"><br><br>
+
+    <button type="button" onclick="adicionarCaixa()">Adicionar</button>
+  </form>
+
+  <div id="caixas"></div>
+
+  <script>
+    function adicionarCaixa() {
+      var nome = document.getElementById("nome").value;
+      var cor = document.getElementById("cor").value;
+
+      if (nome.length >= 2) {
+        var duasLetras = nome.substring(0, 2).toUpperCase();
+        var caixa = document.createElement("div");
+        caixa.classList.add("caixa");
+        caixa.style.backgroundColor = cor;
+        caixa.innerText = duasLetras;
+        document.getElementById("caixas").appendChild(caixa);
+      }
+    }
+  </script>
+</body>
+
+</html>

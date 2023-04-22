@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        main {
+            width: 300px;
+            height: fit-content;
+            margin: 100px auto;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 25px auto 0 auto;
+        }
+
+
+        input {
+            border: 3px solid;
+            border-radius: 5px;
+            display: block;
+        }
+
+        input[type=radio] {
+            display: inline-block;
+        }
+
+        .msg {
+            margin: 0;
+            color: #ff0000;
+            display: none;
+        }
+
+        .sx p {
+            margin: 0;
+            display: inline-block;
+        }
+
+        .msgCompleto {
+            color: #008000;
+            display: none;
+        }
+
+        .prv {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1 class="msgCompleto">Completo</h1>
+        <label>
+            <p>Nome</p>
+            <input autofocus id="nome" type="text" />
+            <p class="msg" id="s-nome">campo vazio</p>
+        </label>
+        <label>
+            <p>Sobrenome</p>
+            <input id="sobrenome" type="text" />
+            <p class="msg" id="s-sobrenome">campo vazio</p>
+        </label>
+        <label>
+            <input class="prv" list="provincias">
+
+            <datalist id="provincias">
+                <option value="Maputo Cidade"></option>
+                <option value="Maputo Provincia"></option>
+                <option value="Gaza"></option>
+                <option value="Inhambane"></option>
+                <option value="Manica"></option>
+                <option value="Sofala"></option>
+                <option value="Zambenzia"></option>
+                <option value="Tete"></option>
+                <option value="Nampula"></option>
+                <option value="Niassa"></option>
+                <option value="Cabo Delgado"></option>
+            </datalist>
+        </label>
+        <label>
+            <p>Sexo</p>
+            <label class="sx">
+                <p>M</p>
+                <input type="radio" name="sexo" id="" />
+            </label>
+
+            <label class="sx">
+                <p>F</p>
+                <input type="radio" name="sexo" id="" />
+            </label>
+        </label>
+        <label>
+            <p>Data de nascimento</p>
+            <input type="date" />
+        </label>
+        <label>
+            <p>Observacao</p>
+            <input id="observacao" type="text" />
+            <p class="msg" id="s-observacao">campo vazio</p>
+        </label>
+
+        <button>Submeter</button>
+    </main>
+
+    <script>
+        const nome = document.querySelector("#nome");
+        const sobrenome = document.querySelector("#sobrenome");
+        const observacao = document.querySelector("#observacao");
+        const button = document.querySelector("button");
+        const msgCompleto = document.querySelector(".msgCompleto");
+        const inputsText = document.querySelectorAll("input[type=text]");
+
+        const verificarVazio = () => {
+            let completo = true;
+
+            for (const i of inputsText) {
+                if (i.value.trim() == "") {
+                    i.style.borderColor = "red";
+                    completo = false;
+                    document.querySelector(`#s-${i.id}`).style.display = "initial";
+                } else {
+                    document.querySelector(`#s-${i.id}`).style.display = "none";
+                }
+            }
+
+            if (completo) {
+                msgCompleto.style.display = "initial";
+            } else {
+                msgCompleto.style.display = "none";
+            }
+        };
+
+        for (let i = 0; i < inputsText.length; i++) {
+            let e = inputsText[i];
+
+            e.addEventListener("keyup", () => {
+                if (e.style.borderColor == "red" && e.value.trim() != "") {
+                    e.style.borderColor = "green";
+                } else if (e.style.borderColor == "green" && e.value.trim() == "") {
+                    e.style.borderColor = "red";
+                }
+            });
+        }
+
+        button.addEventListener("click", verificarVazio);
+
+    </script>
+</body>
+
+</html>
